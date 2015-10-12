@@ -40,12 +40,6 @@ func GetTree(filePath string) *FileTree {
 		IsLink:       (info.Mode()&os.ModeSymlink != 0),
 	}
 
-	f.path = filePath
-	f.ModifiedTime = info.ModTime()
-	f.Size = info.Size()
-	f.IsDir = info.IsDir()
-	f.Name = info.Name()
-	f.IsLink = (info.Mode()&os.ModeSymlink != 0)
 	if f.IsLink {
 		link, err := os.Readlink(filePath)
 		if err != nil {
